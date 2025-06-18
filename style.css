@@ -126,10 +126,8 @@ html {
     cursor: pointer; /* Indica que é clicável */
     position: relative; /* Para a info-adicional absoluta */
     overflow: hidden; /* Para esconder o conteúdo extra */
-    /* REMOVIDO: height: auto; - Removido para deixar a altura flexível e não quebrar */
-    /* Adicionado min-height para garantir que o card sempre tenha um tamanho base */
-    min-height: 150px; /* Ajuste este valor se o conteúdo principal for muito pequeno */
-    display: flex; /* Adicionado para organizar o conteúdo interno */
+    min-height: 150px; /* Garante altura mínima para o conteúdo principal */
+    display: flex; /* Para organizar o conteúdo interno */
     flex-direction: column; /* Conteúdo em coluna */
     justify-content: space-between; /* Empurra o conteúdo para cima e info-adicional para baixo */
 }
@@ -215,14 +213,14 @@ html {
     position: relative;
 }
 
-/* Seta de indicação de scroll (sutil) */
+/* Seta de indicação de scroll (sutil) - Ajustada a cor para ser mais visível, talvez? */
 .scroll-indicator-arrow {
     position: fixed;
-    right: 10px;
+    right: 10px; /* Ajustei para ficar um pouco mais visível na borda */
     top: 50%;
     transform: translateY(-50%);
     font-size: 2.5rem;
-    color: rgba(255, 255, 255, 0.2); /* Transparência de 20% */
+    color: rgba(255, 255, 255, 0.4); /* Aumentei a opacidade para 40% */
     pointer-events: none;
     transition: opacity 0.5s ease-out;
     opacity: 0;
@@ -233,7 +231,7 @@ html {
     opacity: 1;
 }
 
-@media (min-width: 900px) { /* Esconde em telas maiores onde não precisa de scroll na tabela */
+@media (min-width: 900px) {
     .scroll-indicator-arrow {
         display: none;
     }
