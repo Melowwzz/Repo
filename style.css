@@ -170,8 +170,31 @@ html {
     -webkit-overflow-scrolling: touch; /* Melhora o scroll em dispositivos iOS */
     margin-bottom: 2rem; /* Adiciona um espaço abaixo se necessário */
     padding-bottom: 10px; /* Espaço para a barra de rolagem não cobrir o conteúdo */
-    /* Sombra para indicar que a tabela continua para a direita */
-    box-shadow: inset -10px 0 10px -5px rgba(0, 0, 0, 0.5); 
+    position: relative; /* Essencial para posicionar a seta sobre ele */
+}
+
+/* Estilo para a seta de indicação de scroll (inicialmente invisível) */
+.scroll-indicator-arrow {
+    position: absolute;
+    right: 10px; /* Posição à direita */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translateY(-50%); /* Ajuste fino para o centro */
+    font-size: 2.5rem; /* Tamanho da seta */
+    color: rgba(255, 255, 255, 0.2); /* Quase transparente (20% de opacidade) */
+    pointer-events: none; /* Garante que a seta não bloqueie interações com a tabela */
+    transition: opacity 0.5s ease-out; /* Transição suave para aparecer/sumir */
+    opacity: 0; /* Começa invisível */
+}
+
+.scroll-indicator-arrow.is-visible {
+    opacity: 1; /* Fica visível quando a classe é adicionada pelo JS */
+}
+
+/* Para ocultar a seta completamente em telas maiores onde não há scroll */
+@media (min-width: 900px) { /* Ajuste 900px para a largura que a tabela não precisa de scroll */
+    .scroll-indicator-arrow {
+        display: none;
+    }
 }
 
 .tabela-financeira {
