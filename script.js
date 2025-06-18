@@ -40,15 +40,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const comparativoCards = document.querySelectorAll('.card-comparativo');
 
     comparativoCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // Verifica se o dispositivo é móvel ou tela pequena (largura < 768px)
-            // Ou se é um dispositivo de toque (para tablets, etc.)
-            if (window.innerWidth < 768 || ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
-                card.classList.toggle('is-active'); // Adiciona/remove a classe para mostrar/esconder
+        card.addEventListener('click', (event) => {
+            // Verifica se o clique foi em um link dentro do card, para não ativar/desativar
+            if (event.target.tagName === 'A') {
+                return; // Se clicou em um link, não faz nada com o card
             }
-            // Para desktop (largura >= 768px), o hover já faz a função
+
+            const infoAdicional = card.querySelector('.info-adicional');
+            if (infoAdicional) {
+                // Usa a verificação de toque ou largura de tela
+                if (window.innerWidth < 768 || ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+                    // Se o card já estiver ativo, ele fecha. Se não, ele abre.
+                    if (card.classList.contains('is-active')) {
+                        card.classList.remove('is-active');
+                    } else {
+                        // Fecha outros cards abertos (opcional, para não ter vários abertos ao mesmo tempo)
+                        comparativoCards.forEach(otherCard => {
+                            if (otherCard !== card) { // Garante que não fecha o card atual
+                                otherCard.classList.remove('is-active');
+                            }
+                        });
+                        card.classList.add('is-active');
+                    }
+                }
+            }
         });
     });
+
+    // --- LÓGICA PARA FAZER A SETA DA TABELA APARECER E DESAPARECER (Otimizada) ---
+    const tabelaScrollWrapper = document.querySelector('.tabela-scroll-wrapper');
+    const scrollIndicatorArrow = document.querySelector('.scroll-indicator-arrow');
+
+    if (tabelaScrollWrapper && scrollIndicatorArrow) {
+        let scrollTimeout; // Para debounce
+
+        const checkScrollPosition = () => {
+            clearTimeout(scrollTimeout); // Limpa o timeout anterior
+            scrollTimeout = setTimeout(() => { // Define um novo timeout
+                const hasHorizontalScroll = tabelaScrollWrapper.scrollWidth > tabelaScrollWrapper.clientWidth;
+                const isScrolledToStart = tabelaScrollWrapper.scrollLeft < 20; // Pequena margem para o início
+
+                if (hasHorizontalScroll && isScrolledToStart) {
+                    scrollIndicatorArrow.classList.add('is-visible');
+                } else {
+                    scrollIndicatorArrow.classList.remove('is-visible');
+                }
+            }, 100); // Debounce de 100ms
+        };
+
+        tabelaScrollWrapper.addEventListener('scroll', checkScrollPosition);
+        window.addEventListener('resize', checkScrollPosition); // Recheca no redimensionamento
+        checkScrollPosition(); // Chama uma vez para o estado inicial
+    }
 
 
     // --- LÓGICA DA CALCULADORA ---
