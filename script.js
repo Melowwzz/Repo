@@ -41,15 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     comparativoCards.forEach(card => {
         card.addEventListener('click', () => {
-            // Apenas para telas pequenas (largura < 768px), onde o hover não funciona bem
-            if (window.innerWidth < 768) {
+            // Verifica se o dispositivo é móvel ou tela pequena (largura < 768px)
+            // Ou se é um dispositivo de toque (para tablets, etc.)
+            if (window.innerWidth < 768 || ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
                 card.classList.toggle('is-active'); // Adiciona/remove a classe para mostrar/esconder
             }
+            // Para desktop (largura >= 768px), o hover já faz a função
         });
-
-        // Opcional: Se quiser garantir que a info-adicional fecha ao clicar fora,
-        // mas isso pode deixar o comportamento estranho no desktop com hover.
-        // Por enquanto, o hover já lida com desktop e o click com mobile.
     });
 
 
@@ -72,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (salarioBruto <= 1412) descontoInss = salarioBruto * 0.075;
         else if (salarioBruto <= 2666.68) descontoInss = (salarioBruto - 1412) * 0.09 + 105.90;
         else if (salarioBruto <= 4000.03) descontoInss = (salarioBruto - 2666.68) * 0.12 + 218.82;
-        else if (salarioBruto <= 7786.02) descontoInss = (salarioBrano - 4000.03) * 0.14 + 378.82; // Erro de digitação "salarioBrano" corrigido para "salarioBruto"
+        else if (salarioBruto <= 7786.02) descontoInss = (salarioBruto - 4000.03) * 0.14 + 378.82;
         else descontoInss = 908.85;
 
         const baseCalculoIR = salarioBruto - descontoInss;
