@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // LÓGICA NOVA: Animar as barras do gráfico quando visíveis
                 if (entry.target.id === 'batalha-numeros') {
-                    const barraDesejo = document.querySelector('.bar-clt-desejo'); // Corrigido o seletor aqui
-                    const barraNecessidade = document.querySelector('.bar-pj-necessidade'); // Corrigido o seletor aqui
+                    const barraDesejo = document.querySelector('.bar-clt-desejo'); 
+                    const barraNecessidade = document.querySelector('.bar-pj-necessidade');
                     
                     if (barraDesejo) barraDesejo.style.width = '67.7%';
                     if (barraNecessidade) barraNecessidade.style.width = '45%';
@@ -25,56 +25,39 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // --- LÓGICA NOVA: ROLAR A PÁGINA AO CLICAR NA SETA DE ABRE ---
+    // --- LÓGICA: ROLAR A PÁGINA AO CLICAR NA SETA DE ABERTURA ---
     const scrollArrowHeader = document.querySelector('.scroll-down-arrow');
     if (scrollArrowHeader) {
         scrollArrowHeader.addEventListener('click', () => {
-            // Rola para a próxima seção (neste caso, a seção 'comparativo')
             const nextSection = document.getElementById('comparativo');
             if (nextSection) {
-                nextSection.scrollIntoView({ behavior: 'smooth' }); // Adiciona um scroll suave
+                nextSection.scrollIntoView({ behavior: 'smooth' });
             }
         });
     }
 
-    // --- LÓGICA PARA A SETA DE SCROLL DA TABELA ---
+    // --- REMOVIDO: LÓGICA PARA A SETA DE SCROLL DA TABELA ---
+    // A seta foi removida do HTML e CSS, então a lógica no JS não é mais necessária.
+    // O código abaixo foi retirado:
+    /*
     const tabelaScrollWrapper = document.querySelector('.tabela-scroll-wrapper');
-    const scrollIndicatorArrow = document.querySelector('.scroll-indicator-arrow'); 
+    const scrollIndicatorArrow = document.querySelector('.scroll-indicator-arrow');
 
     if (tabelaScrollWrapper && scrollIndicatorArrow) {
-        // Função para verificar a posição do scroll e mostrar/esconder a seta
         const checkScrollPosition = () => {
-            // Verifica se a tabela tem scroll horizontal (conteúdo maior que a área visível)
             const hasHorizontalScroll = tabelaScrollWrapper.scrollWidth > tabelaScrollWrapper.clientWidth;
-
-            // Se tiver scroll horizontal E não estiver no final do scroll
-            // Usei 20 para uma margem maior antes de esconder a seta, pra ela não sumir tão rápido
-            // E 0 para scrollLeft > 0 significa que já começou a rolar para a direita
-            if (hasHorizontalScroll && tabelaScrollWrapper.scrollLeft < (tabelaScrollWrapper.scrollWidth - tabelaScrollWrapper.clientWidth - 20) && tabelaScrollWrapper.scrollLeft === 0) { 
-                // A seta deve aparecer apenas se houver scroll disponível para a direita E se a tabela estiver no início (scrollLeft 0)
-                scrollIndicatorArrow.classList.add('is-visible'); // Mostra a seta
-            } else {
-                scrollIndicatorArrow.classList.remove('is-visible'); // Esconde a seta
-            }
-
-            // Adição: fazer a seta aparecer se o scroll estiver no começo e houver mais conteúdo
-            if (tabelaScrollWrapper.scrollLeft === 0 && hasHorizontalScroll && tabelaScrollWrapper.scrollWidth > tabelaScrollWrapper.clientWidth) {
+            if (hasHorizontalScroll && tabelaScrollWrapper.scrollLeft === 0) {
                 scrollIndicatorArrow.classList.add('is-visible');
-            } else if (tabelaScrollWrapper.scrollLeft > 0) {
-                // Esconde a seta assim que o usuário começar a rolar para o lado
+            } else {
                 scrollIndicatorArrow.classList.remove('is-visible');
             }
         };
-
-        // Adiciona um listener para o evento de scroll no wrapper
         tabelaScrollWrapper.addEventListener('scroll', checkScrollPosition);
-
-        // Chama a função uma vez ao carregar a página para definir o estado inicial da seta
         checkScrollPosition();
-
-        // Opcional: Chama novamente em caso de redimensionamento da janela (seja do navegador ou rotação do celular)
         window.addEventListener('resize', checkScrollPosition);
     }
+    */
+
 
     // --- LÓGICA DA CALCULADORA ---
     const salarioInput = document.getElementById('salario-bruto');
