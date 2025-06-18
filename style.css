@@ -170,12 +170,12 @@ html {
     -webkit-overflow-scrolling: touch; /* Melhora o scroll em dispositivos iOS */
     margin-bottom: 2rem; /* Adiciona um espaço abaixo se necessário */
     padding-bottom: 10px; /* Espaço para a barra de rolagem não cobrir o conteúdo */
-    position: relative; /* Essencial para posicionar a seta sobre ele */
+    position: relative; /* Essencial para posicionar a seta sobre ele, mesmo que ela seja fixed */
 }
 
 /* Estilo para a seta de indicação de scroll (inicialmente invisível) */
 .scroll-indicator-arrow {
-    position: absolute;
+    position: fixed; /* MUDANÇA AQUI: de 'absolute' para 'fixed' para ela flutuar na viewport */
     right: 10px; /* Posição à direita */
     top: 50%; /* Centraliza verticalmente */
     transform: translateY(-50%); /* Ajuste fino para o centro */
@@ -184,6 +184,7 @@ html {
     pointer-events: none; /* Garante que a seta não bloqueie interações com a tabela */
     transition: opacity 0.5s ease-out; /* Transição suave para aparecer/sumir */
     opacity: 0; /* Começa invisível */
+    z-index: 10; /* Opcional: Garante que a seta fique acima de outros elementos se houver sobreposição */
 }
 
 .scroll-indicator-arrow.is-visible {
