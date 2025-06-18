@@ -126,9 +126,14 @@ html {
     cursor: pointer; /* Indica que é clicável */
     position: relative; /* Para a info-adicional absoluta */
     overflow: hidden; /* Para esconder o conteúdo extra */
-    /* REMOVIDO: height: auto; */ /* Isso pode causar o sumiço do conteúdo principal se a info-adicional estiver escondida */
-    padding-bottom: 1.5rem; /* Padding base para o conteúdo principal */
+    /* REMOVIDO: height: auto; - Removido para deixar a altura flexível e não quebrar */
+    /* Adicionado min-height para garantir que o card sempre tenha um tamanho base */
+    min-height: 150px; /* Ajuste este valor se o conteúdo principal for muito pequeno */
+    display: flex; /* Adicionado para organizar o conteúdo interno */
+    flex-direction: column; /* Conteúdo em coluna */
+    justify-content: space-between; /* Empurra o conteúdo para cima e info-adicional para baixo */
 }
+
 .card-comparativo:hover {
     transform: translateY(-5px); /* Efeito de "levantar" */
     box-shadow: 0 15px 25px -5px rgba(0,0,0,0.3);
@@ -145,7 +150,7 @@ html {
     opacity: 0; /* Começa invisível */
     overflow: hidden;
     transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Transição suave */
-    margin-top: 1rem; /* Espaçamento após o texto principal */
+    margin-top: auto; /* Empurra para o final do card com flexbox */
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -158,13 +163,13 @@ html {
 
 /* Mostra a informação adicional no hover (PC) */
 .card-comparativo:hover .info-adicional {
-    max-height: 200px; /* Aumentei um pouco a altura máxima, ajuste se o texto for maior */
+    max-height: 200px; /* Altura máxima para revelar o conteúdo, ajuste se o texto for maior */
     opacity: 1;
 }
 
 /* Para dispositivos móveis: Exibe no clique (usando uma classe ativada por JS) */
 .card-comparativo.is-active .info-adicional {
-    max-height: 200px; /* Aumentei um pouco a altura máxima, ajuste se o texto for maior */
+    max-height: 200px; /* Altura máxima para revelar o conteúdo */
     opacity: 1;
 }
 
@@ -210,7 +215,7 @@ html {
     position: relative;
 }
 
-/* REATIVADO: Seta de indicação de scroll (sutil) */
+/* Seta de indicação de scroll (sutil) */
 .scroll-indicator-arrow {
     position: fixed;
     right: 10px;
