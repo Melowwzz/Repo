@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.3 // A animação começa quando 30% da seção está visível
     });
 
-    // Observa todas as seções, exceto a primeira que já é visível
+    // Observa todas as seções, excepto a primeira que já é visível
     document.querySelectorAll('.section-container:not(#abertura)').forEach(section => {
         observer.observe(section);
     });
