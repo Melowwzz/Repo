@@ -162,7 +162,6 @@ html {
     background-color: #1e293b;
     padding: 2.5rem;
     border-radius: 1.5rem;
-    /* Adicionado max-width para centrar a tabela se o container for muito largo */
     max-width: 900px;
     margin: 0 auto;
 }
@@ -171,35 +170,16 @@ html {
 .tabela-scroll-wrapper {
     overflow-x: auto; /* Habilita o scroll horizontal se o conteúdo for maior */
     -webkit-overflow-scrolling: touch; /* Melhora o scroll em dispositivos iOS */
-    margin-bottom: 2rem; /* Adiciona um espaço abaixo se necessário */
-    padding-bottom: 10px; /* Espaço para a barra de rolagem não cobrir o conteúdo */
-    position: relative; /* Essencial para posicionar a seta sobre ele, mesmo que ela seja fixed */
+    margin-bottom: 2rem;
+    padding-bottom: 10px;
+    position: relative;
 }
 
-/* Estilo para a seta de indicação de scroll (inicialmente invisível) */
-.scroll-indicator-arrow {
-    position: fixed; /* MUDANÇA AQUI: de 'absolute' para 'fixed' para ela flutuar na viewport */
-    right: 10px; /* Posição à direita */
-    top: 50%; /* Centraliza verticalmente */
-    transform: translateY(-50%); /* Ajuste fino para o centro */
-    font-size: 2.5rem; /* Tamanho da seta */
-    color: rgba(255, 255, 255, 0.2); /* Quase transparente (20% de opacidade) */
-    pointer-events: none; /* Garante que a seta não bloqueie interações com a tabela */
-    transition: opacity 0.5s ease-out; /* Transição suave para aparecer/sumir */
-    opacity: 0; /* Começa invisível */
-    z-index: 100; /* Aumentado o z-index para garantir que a seta apareça acima de tudo */
-}
+/* REMOVIDO: Estilo da seta de indicação de scroll (não será mais usada) */
+/* .scroll-indicator-arrow { ... } */
+/* .scroll-indicator-arrow.is-visible { ... } */
+/* @media (min-width: 900px) { .scroll-indicator-arrow { display: none; } } */
 
-.scroll-indicator-arrow.is-visible {
-    opacity: 1; /* Fica visível quando a classe é adicionada pelo JS */
-}
-
-/* Para ocultar a seta completamente em telas maiores onde não há scroll */
-@media (min-width: 900px) { /* Ajuste 900px para a largura que a tabela não precisa de scroll */
-    .scroll-indicator-arrow {
-        display: none;
-    }
-}
 
 .tabela-financeira {
     width: 100%;
@@ -339,23 +319,20 @@ html {
     border-radius: 1.5rem;
     max-width: 800px;
     margin: 0 auto; /* Centraliza a calculadora */
-    display: flex; /* Adicionado para flexbox */
-    flex-direction: column; /* Coloca os itens em coluna */
-    align-items: center; /* Centraliza horizontalmente os itens */
+    text-align: center; /* Centraliza todo o texto dentro do container */
 }
 .input-group {
-    width: 100%; /* Garante que o grupo de input ocupe a largura total */
-    text-align: center; /* Centraliza o label */
+    margin-bottom: 2.5rem; /* Adiciona espaço abaixo do input */
 }
 .input-group label {
-    display: block;
+    display: block; /* Garante que o label ocupe sua própria linha */
     font-weight: 500;
     margin-bottom: 0.5rem;
     color: #cbd5e1;
 }
 #salario-bruto {
     width: calc(100% - 2rem); /* Ajusta a largura para considerar o padding */
-    max-width: 300px; /* Define uma largura máxima para o input em telas maiores */
+    max-width: 300px; /* Limita a largura do input para não ficar gigante no PC */
     font-size: 1.5rem;
     padding: 1rem;
     border-radius: 0.75rem;
@@ -364,7 +341,6 @@ html {
     color: #f1f5f9;
     text-align: center;
     transition: all 0.3s ease;
-    margin-bottom: 2.5rem;
 }
 #salario-bruto:focus {
     outline: none;
@@ -373,14 +349,13 @@ html {
 }
 .resultados-grid {
     display: grid;
-    grid-template-columns: 1fr; /* Em telas pequenas, as colunas se empilham */
+    grid-template-columns: 1fr; /* Por padrão, empilha em uma coluna */
     gap: 2rem;
     text-align: center;
-    width: 100%; /* Garante que o grid ocupe a largura total do container */
 }
-@media (min-width: 768px) {
+@media (min-width: 768px) { /* A partir de 768px (PC) */
     .resultados-grid {
-        grid-template-columns: 1fr 1fr; /* Em telas maiores, 2 colunas */
+        grid-template-columns: 1fr 1fr; /* Duas colunas */
     }
 }
 .resultado-valor {
