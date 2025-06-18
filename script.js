@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('is-visible');
-
+                
                 // LÓGICA NOVA: Animar as barras do gráfico quando visíveis
                 if (entry.target.id === 'batalha-numeros') {
                     const barraDesejo = document.querySelector('.clt-desejo');
                     const barraNecessidade = document.querySelector('.pj-necessidade');
-
+                    
                     if (barraDesejo) barraDesejo.style.width = '67.7%';
                     if (barraNecessidade) barraNecessidade.style.width = '45%';
                 }
@@ -25,16 +25,45 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-    // --- LÓGICA NOVA: ROLAR A PÁGINA AO CLICAR NA SETA ---
-    const scrollArrow = document.querySelector('.scroll-down-arrow');
-    if (scrollArrow) {
-        scrollArrow.addEventListener('click', () => {
+    // --- LÓGICA NOVA: ROLAR A PÁGINA AO CLICAR NA SETA DE ABRE ---
+    const scrollArrowHeader = document.querySelector('.scroll-down-arrow');
+    if (scrollArrowHeader) {
+        scrollArrowHeader.addEventListener('click', () => {
             // Rola para a próxima seção (neste caso, a seção 'comparativo')
             const nextSection = document.getElementById('comparativo');
             if (nextSection) {
                 nextSection.scrollIntoView({ behavior: 'smooth' }); // Adiciona um scroll suave
             }
         });
+    }
+
+    // --- LÓGICA PARA A SETA DE SCROLL DA TABELA ---
+    const tabelaScrollWrapper = document.querySelector('.tabela-scroll-wrapper');
+    const scrollIndicatorArrow = document.querySelector('.scroll-indicator-arrow'); // Renomeei para evitar conflito
+
+    if (tabelaScrollWrapper && scrollIndicatorArrow) {
+        // Função para verificar a posição do scroll e mostrar/esconder a seta
+        const checkScrollPosition = () => {
+            // Verifica se a tabela tem scroll horizontal (conteúdo maior que a área visível)
+            const hasHorizontalScroll = tabelaScrollWrapper.scrollWidth > tabelaScrollWrapper.clientWidth;
+
+            // Se tiver scroll horizontal E não estiver no final do scroll
+            // Usei 20 para uma margem maior antes de esconder a seta, pra ela não sumir tão rápido
+            if (hasHorizontalScroll && tabelaScrollWrapper.scrollLeft < (tabelaScrollWrapper.scrollWidth - tabelaScrollWrapper.clientWidth - 20)) { 
+                scrollIndicatorArrow.classList.add('is-visible'); // Mostra a seta
+            } else {
+                scrollIndicatorArrow.classList.remove('is-visible'); // Esconde a seta
+            }
+        };
+
+        // Adiciona um listener para o evento de scroll no wrapper
+        tabelaScrollWrapper.addEventListener('scroll', checkScrollPosition);
+
+        // Chama a função uma vez ao carregar a página para definir o estado inicial da seta
+        checkScrollPosition();
+
+        // Opcional: Chama novamente em caso de redimensionamento da janela (seja do navegador ou rotação do celular)
+        window.addEventListener('resize', checkScrollPosition);
     }
 
     // --- LÓGICA DA CALCULADORA ---
@@ -65,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (baseCalculoIR > 2826.65 && baseCalculoIR <= 3751.05) descontoIr = (baseCalculoIR * 0.15) - 381.44;
         else if (baseCalculoIR > 3751.05 && baseCalculoIR <= 4664.68) descontoIr = (baseCalculoIR * 0.225) - 662.77;
         else if (baseCalculoIR > 4664.68) descontoIr = (baseCalculoIR * 0.275) - 896.00;
-
+        
         const salarioLiquidoClt = salarioBruto - descontoInss - descontoIr;
         const impostoPj = salarioBruto * 0.06;
         const salarioLiquidoPj = salarioBruto - impostoPj;
@@ -86,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.value = `R$ ${value}`;
         calcularSalarios();
     });
-
+    
     function animateValue(element, start, end, duration) {
         let startTimestamp = null;
         const step = (timestamp) => {
