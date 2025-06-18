@@ -126,7 +126,8 @@ html {
     cursor: pointer; /* Indica que é clicável */
     position: relative; /* Para a info-adicional absoluta */
     overflow: hidden; /* Para esconder o conteúdo extra */
-    height: auto; /* Ajusta a altura automaticamente */
+    /* REMOVIDO: height: auto; */ /* Isso pode causar o sumiço do conteúdo principal se a info-adicional estiver escondida */
+    padding-bottom: 1.5rem; /* Padding base para o conteúdo principal */
 }
 .card-comparativo:hover {
     transform: translateY(-5px); /* Efeito de "levantar" */
@@ -141,9 +142,9 @@ html {
 /* Estilo da informação adicional */
 .info-adicional {
     max-height: 0; /* Começa escondido */
+    opacity: 0; /* Começa invisível */
     overflow: hidden;
     transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Transição suave */
-    opacity: 0;
     margin-top: 1rem; /* Espaçamento após o texto principal */
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -157,13 +158,13 @@ html {
 
 /* Mostra a informação adicional no hover (PC) */
 .card-comparativo:hover .info-adicional {
-    max-height: 150px; /* Altura máxima para revelar o conteúdo, ajuste se o texto for maior */
+    max-height: 200px; /* Aumentei um pouco a altura máxima, ajuste se o texto for maior */
     opacity: 1;
 }
 
 /* Para dispositivos móveis: Exibe no clique (usando uma classe ativada por JS) */
 .card-comparativo.is-active .info-adicional {
-    max-height: 150px; /* Altura máxima para revelar o conteúdo */
+    max-height: 200px; /* Aumentei um pouco a altura máxima, ajuste se o texto for maior */
     opacity: 1;
 }
 
@@ -220,7 +221,7 @@ html {
     pointer-events: none;
     transition: opacity 0.5s ease-out;
     opacity: 0;
-    z-index: 100; /* Garante que apareça sobre outros elementos */
+    z-index: 100;
 }
 
 .scroll-indicator-arrow.is-visible {
