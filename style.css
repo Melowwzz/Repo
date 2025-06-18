@@ -162,9 +162,12 @@ html {
     background-color: #1e293b;
     padding: 2.5rem;
     border-radius: 1.5rem;
+    /* Adicionado max-width para centrar a tabela se o container for muito largo */
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-/* NOVO: Wrapper para scroll horizontal em telas pequenas */
+/* Wrapper para scroll horizontal em telas pequenas */
 .tabela-scroll-wrapper {
     overflow-x: auto; /* Habilita o scroll horizontal se o conteúdo for maior */
     -webkit-overflow-scrolling: touch; /* Melhora o scroll em dispositivos iOS */
@@ -184,7 +187,7 @@ html {
     pointer-events: none; /* Garante que a seta não bloqueie interações com a tabela */
     transition: opacity 0.5s ease-out; /* Transição suave para aparecer/sumir */
     opacity: 0; /* Começa invisível */
-    z-index: 10; /* Opcional: Garante que a seta fique acima de outros elementos se houver sobreposição */
+    z-index: 100; /* Aumentado o z-index para garantir que a seta apareça acima de tudo */
 }
 
 .scroll-indicator-arrow.is-visible {
@@ -335,7 +338,14 @@ html {
     padding: 2.5rem;
     border-radius: 1.5rem;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto; /* Centraliza a calculadora */
+    display: flex; /* Adicionado para flexbox */
+    flex-direction: column; /* Coloca os itens em coluna */
+    align-items: center; /* Centraliza horizontalmente os itens */
+}
+.input-group {
+    width: 100%; /* Garante que o grupo de input ocupe a largura total */
+    text-align: center; /* Centraliza o label */
 }
 .input-group label {
     display: block;
@@ -344,7 +354,8 @@ html {
     color: #cbd5e1;
 }
 #salario-bruto {
-    width: 100%;
+    width: calc(100% - 2rem); /* Ajusta a largura para considerar o padding */
+    max-width: 300px; /* Define uma largura máxima para o input em telas maiores */
     font-size: 1.5rem;
     padding: 1rem;
     border-radius: 0.75rem;
@@ -362,13 +373,14 @@ html {
 }
 .resultados-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Em telas pequenas, as colunas se empilham */
     gap: 2rem;
     text-align: center;
+    width: 100%; /* Garante que o grid ocupe a largura total do container */
 }
 @media (min-width: 768px) {
     .resultados-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; /* Em telas maiores, 2 colunas */
     }
 }
 .resultado-valor {
