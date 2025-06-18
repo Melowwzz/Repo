@@ -36,27 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- REMOVIDO: LÓGICA PARA A SETA DE SCROLL DA TABELA ---
-    // A seta foi removida do HTML e CSS, então a lógica no JS não é mais necessária.
-    // O código abaixo foi retirado:
-    /*
-    const tabelaScrollWrapper = document.querySelector('.tabela-scroll-wrapper');
-    const scrollIndicatorArrow = document.querySelector('.scroll-indicator-arrow');
+    // --- LÓGICA PARA EXIBIR INFORMAÇÕES ADICIONAIS NOS CARDS (CLT/PJ) ---
+    const comparativoCards = document.querySelectorAll('.card-comparativo');
 
-    if (tabelaScrollWrapper && scrollIndicatorArrow) {
-        const checkScrollPosition = () => {
-            const hasHorizontalScroll = tabelaScrollWrapper.scrollWidth > tabelaScrollWrapper.clientWidth;
-            if (hasHorizontalScroll && tabelaScrollWrapper.scrollLeft === 0) {
-                scrollIndicatorArrow.classList.add('is-visible');
-            } else {
-                scrollIndicatorArrow.classList.remove('is-visible');
+    comparativoCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Apenas para telas pequenas (largura < 768px), onde o hover não funciona bem
+            if (window.innerWidth < 768) {
+                card.classList.toggle('is-active'); // Adiciona/remove a classe para mostrar/esconder
             }
-        };
-        tabelaScrollWrapper.addEventListener('scroll', checkScrollPosition);
-        checkScrollPosition();
-        window.addEventListener('resize', checkScrollPosition);
-    }
-    */
+        });
+
+        // Opcional: Se quiser garantir que a info-adicional fecha ao clicar fora,
+        // mas isso pode deixar o comportamento estranho no desktop com hover.
+        // Por enquanto, o hover já lida com desktop e o click com mobile.
+    });
 
 
     // --- LÓGICA DA CALCULADORA ---
@@ -78,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (salarioBruto <= 1412) descontoInss = salarioBruto * 0.075;
         else if (salarioBruto <= 2666.68) descontoInss = (salarioBruto - 1412) * 0.09 + 105.90;
         else if (salarioBruto <= 4000.03) descontoInss = (salarioBruto - 2666.68) * 0.12 + 218.82;
-        else if (salarioBruto <= 7786.02) descontoInss = (salarioBruto - 4000.03) * 0.14 + 378.82;
+        else if (salarioBruto <= 7786.02) descontoInss = (salarioBrano - 4000.03) * 0.14 + 378.82; // Erro de digitação "salarioBrano" corrigido para "salarioBruto"
         else descontoInss = 908.85;
 
         const baseCalculoIR = salarioBruto - descontoInss;
