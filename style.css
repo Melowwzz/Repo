@@ -125,11 +125,11 @@ html {
     transition: all 0.3s ease;
     cursor: pointer; /* Indica que é clicável */
     position: relative;
-    overflow: hidden;
-    min-height: 150px;
+    /* overflow: hidden; foi removido para evitar problemas de altura em alguns casos */
+    min-height: 150px; /* Garante altura mínima para o conteúdo principal */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-start; /* Alinha o conteúdo ao topo */
 }
 
 .card-comparativo:hover {
@@ -140,32 +140,34 @@ html {
 .coluna-clt .card-comparativo { border-left-color: #22d3ee; }
 .coluna-pj .card-comparativo { border-left-color: #a78bfa; }
 .card-comparativo h4 { font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin-bottom: 0.25rem; }
-.card-comparativo p { color: #94a3b8; }
+.card-comparativo p { color: #94a3b8; margin-bottom: 0.5rem; /* Adicionado margem para separar do info-adicional */ }
 
 /* Estilo da informação adicional */
 .info-adicional {
-    height: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: height 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out; /* Transições mais rápidas */
-    margin-top: auto;
-    padding-top: 0;
-    border-top: none;
+    height: 0; /* Começa com altura 0 para transição suave */
+    opacity: 0; /* Começa invisível */
+    visibility: hidden; /* Esconde para não interagir antes de aparecer */
+    overflow: hidden;
+    transition: height 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out; /* Transições suaves */
+    padding-top: 0; /* Removido para ser controlado pela transição */
+    border-top: none; /* Removido para ser controlado pela transição */
+    margin-top: 0; /* Removido para ser controlado pela transição */
 }
 
 .info-adicional p {
     font-size: 0.9rem;
     color: #cbd5e1;
     line-height: 1.6;
-    padding: 1rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 1rem;
+    padding-top: 1rem; /* Adicionado padding interno aqui para a separação visual */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Borda superior dentro do padding */
+    margin-top: 1rem; /* Margem entre o texto principal do card e a info adicional */
 }
+
 
 /* Mostra a informação adicional no hover (PC) */
 .card-comparativo:hover .info-adicional {
-    height: auto;
-    max-height: 200px;
+    height: auto; /* Permite que a altura se ajuste ao conteúdo */
+    max-height: 200px; /* Limite de altura para a transição */
     opacity: 1;
     visibility: visible;
 }
@@ -229,7 +231,7 @@ html {
     font-size: 2.5rem;
     color: rgba(255, 255, 255, 0.4);
     pointer-events: none;
-    transition: opacity 0.3s ease-out; /* Transição mais rápida para a seta */
+    transition: opacity 0.5s ease-out;
     opacity: 0;
     z-index: 100;
 }
