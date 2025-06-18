@@ -123,13 +123,13 @@ html {
     margin-bottom: 1rem;
     border-left: 4px solid transparent;
     transition: all 0.3s ease;
-    cursor: pointer;
-    position: relative; /* Mantém a posição relativa para o 'absolute' interno */
+    cursor: pointer; /* Indica que é clicável */
+    position: relative;
+    /* overflow: hidden; - Mantendo removido para testar */
     min-height: 150px; /* Garante altura mínima para o conteúdo principal */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-bottom: 1.5rem; /* Padding original do card */
+    justify-content: flex-start; /* Alinha o conteúdo ao topo */
 }
 
 .card-comparativo:hover {
@@ -142,58 +142,52 @@ html {
 .card-comparativo h4 { font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin-bottom: 0.25rem; }
 .card-comparativo p { color: #94a3b8; margin-bottom: 0.5rem; }
 
-/* Estilo da informação adicional - agora com position: absolute */
+/* Estilo da informação adicional */
 .info-adicional {
-    position: absolute; /* Aparece por cima, sem empurrar o layout */
-    bottom: 0; /* Alinha na parte inferior do card */
-    left: 0;
-    right: 0;
-    background-color: #1e293b; /* Mesma cor de fundo do card */
-    padding: 1.5rem; /* Mesmo padding do card */
-    border-radius: 0 0 1rem 1rem; /* Borda arredondada só na parte de baixo */
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* Ajustes críticos para garantir que esteja escondido por padrão */
+    max-height: 0; /* A chave para esconder com transição */
+    opacity: 0; /* Garante invisibilidade */
+    visibility: hidden; /* Ajuda a esconder e remover do fluxo */
+    overflow: hidden; /* Essencial para que max-height:0 esconda o conteúdo */
     
-    height: 0; /* Altura inicial zero */
-    overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    transition: height 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
-    z-index: 5; /* Garante que fique acima do conteúdo de baixo, mas abaixo do principal */
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out; /* Transições suaves */
     
-    /* Para o texto interno */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    /* Remover propriedades de position: absolute, se a ideia é empurrar o conteúdo,
+       elas foram a causa da "não-expansão" do card pai em testes anteriores.
+       Se queremos que empurre, removemos position:absolute e z-index aqui. */
+    /* position: absolute; - Removido */
+    /* z-index: 5; - Removido */
+    /* top, bottom, left, right - Removido */
+
+    /* Espaçamentos e bordas internas */
+    padding-top: 1rem; /* Adicionado padding interno aqui para a separação visual */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Borda superior dentro do padding */
+    margin-top: 1rem; /* Margem entre o texto principal do card e a info adicional */
 }
 
 .info-adicional p {
     font-size: 0.9rem;
     color: #cbd5e1;
     line-height: 1.6;
-    padding: 0; /* Removendo padding daqui, já tem no pai */
-    border: none; /* Removendo borda daqui, já tem no pai */
-    margin: 0; /* Removendo margem daqui */
+    padding: 0; /* Removendo padding que pode conflitar */
+    border: none; /* Removendo borda que pode conflitar */
+    margin: 0; /* Removendo margem que pode conflitar */
 }
 
-/* Quando visível (no hover ou active) */
-.card-comparativo:hover .info-adicional,
-.card-comparativo.is-active .info-adicional {
-    height: auto; /* Permite que a altura se ajuste ao conteúdo */
-    max-height: 200px; /* Limite de altura para a transição */
+
+/* Mostra a informação adicional no hover (PC) */
+.card-comparativo:hover .info-adicional {
+    max-height: 200px; /* Altura máxima para revelar o conteúdo, ajuste se o texto for maior */
     opacity: 1;
     visibility: visible;
-    padding-top: calc(1.5rem + 10px); /* Ajuste para não sobrepor o texto principal */
-    /* Adiciona um padding extra no card-comparativo quando a info está ativa para não sobrepor */
-    /* Isso será feito com JS ou uma altura fixa maior para o card */
 }
 
-/* Ajuste do card principal para ter espaço para a info-adicional */
-.card-comparativo.is-active {
-    padding-bottom: calc(1.5rem + 150px); /* Aumenta o padding inferior do card quando ativo */
-    /* O 150px é uma estimativa da altura da info-adicional, ajuste conforme o conteúdo */
+/* Para dispositivos móveis: Exibe no clique (usando uma classe ativada por JS) */
+.card-comparativo.is-active .info-adicional {
+    max-height: 200px; /* Altura máxima para revelar o conteúdo */
+    opacity: 1;
+    visibility: visible;
 }
-
 
 .argumento-grid {
     display: grid;
