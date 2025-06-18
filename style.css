@@ -54,25 +54,6 @@ html {
     margin-bottom: 4rem;
 }
 
-/* --- Responsividade para Tabelas --- */
-.tabela-scroll-wrapper {
-    overflow-x: auto; /* Habilita o scroll horizontal se o conteúdo for maior */
-    -webkit-overflow-scrolling: touch; /* Melhora o scroll em dispositivos iOS */
-    margin-bottom: 2rem; /* Adiciona um espaço abaixo se necessário */
-    padding-bottom: 10px; /* Espaço para a barra de rolagem não cobrir o conteúdo */
-}
-
-/* Opcional: Para garantir que as colunas não fiquem muito pequenas em telas menores */
-.tabela-financeira {
-    min-width: 600px; /* Define uma largura mínima para a tabela, forçando o scroll */
-    /* Ajuste este valor se a tabela ainda estiver muito apertada ou muito larga */
-}
-
-/* Ajustes para o texto da coluna PJ em telas pequenas, para evitar quebras de linha indesejadas */
-.tabela-financeira th, .tabela-financeira td {
-    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
-}
-
 /* --- Header --- */
 #abertura {
     min-height: 100vh;
@@ -182,14 +163,27 @@ html {
     padding: 2.5rem;
     border-radius: 1.5rem;
 }
+
+/* NOVO: Wrapper para scroll horizontal em telas pequenas */
+.tabela-scroll-wrapper {
+    overflow-x: auto; /* Habilita o scroll horizontal se o conteúdo for maior */
+    -webkit-overflow-scrolling: touch; /* Melhora o scroll em dispositivos iOS */
+    margin-bottom: 2rem; /* Adiciona um espaço abaixo se necessário */
+    padding-bottom: 10px; /* Espaço para a barra de rolagem não cobrir o conteúdo */
+    /* Sombra para indicar que a tabela continua para a direita */
+    box-shadow: inset -10px 0 10px -5px rgba(0, 0, 0, 0.5); 
+}
+
 .tabela-financeira {
     width: 100%;
     border-collapse: collapse;
+    min-width: 650px; /* Largura mínima para a tabela, forçando o scroll em telas menores. Ajuste se necessário. */
 }
 .tabela-financeira th, .tabela-financeira td {
     padding: 1rem 1.5rem;
     text-align: left;
     border-bottom: 1px solid #334155;
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
 }
 .tabela-financeira thead {
     border-bottom: 2px solid #4b5563;
