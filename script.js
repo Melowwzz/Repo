@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const barraNecessidade = document.querySelector('.bar-pj-necessidade');
                     
                     if (barraDesejo) barraDesejo.style.width = '67.7%';
-                    if (barraNecessidade) barraNecessidade.style.width = '45%';
+                    if (barraNecessidade) barraDesejo.style.width = '45%';
                 }
             }
         });
