@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const infoAdicional = card.querySelector('.info-adicional');
             if (infoAdicional) {
-                // Usa a verificação de toque ou largura de tela
+                // Usamos window.innerWidth < 768 para identificar mobile
+                // Ou a presença de 'ontouchstart' (para dispositivos touch que podem ser maiores)
                 if (window.innerWidth < 768 || ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
                     // Se o card já estiver ativo, ele fecha. Se não, ele abre.
                     if (card.classList.contains('is-active')) {
