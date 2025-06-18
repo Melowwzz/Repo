@@ -124,51 +124,58 @@ html {
     border-left: 4px solid transparent;
     transition: all 0.3s ease;
     cursor: pointer; /* Indica que é clicável */
-    position: relative; /* Para a info-adicional absoluta */
-    overflow: hidden; /* Para esconder o conteúdo extra */
-    min-height: 150px; /* Garante altura mínima para o conteúdo principal */
-    display: flex; /* Para organizar o conteúdo interno */
-    flex-direction: column; /* Conteúdo em coluna */
-    justify-content: space-between; /* Empurra o conteúdo para cima e info-adicional para baixo */
+    position: relative;
+    overflow: hidden;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .card-comparativo:hover {
-    transform: translateY(-5px); /* Efeito de "levantar" */
+    transform: translateY(-5px);
     box-shadow: 0 15px 25px -5px rgba(0,0,0,0.3);
 }
 
 .coluna-clt .card-comparativo { border-left-color: #22d3ee; }
 .coluna-pj .card-comparativo { border-left-color: #a78bfa; }
 .card-comparativo h4 { font-size: 1.25rem; font-weight: 700; color: #f1f5f9; margin-bottom: 0.25rem; }
-.card-comparativo p { color: #94a3b8; } /* Parágrafo inicial */
+.card-comparativo p { color: #94a3b8; }
 
 /* Estilo da informação adicional */
 .info-adicional {
-    max-height: 0; /* Começa escondido */
-    opacity: 0; /* Começa invisível */
-    overflow: hidden;
-    transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Transição suave */
-    margin-top: auto; /* Empurra para o final do card com flexbox */
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: height 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out; /* Transições mais rápidas */
+    margin-top: auto;
+    padding-top: 0;
+    border-top: none;
 }
 
 .info-adicional p {
     font-size: 0.9rem;
-    color: #cbd5e1; /* Cor mais clara para o texto detalhado */
+    color: #cbd5e1;
     line-height: 1.6;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
 }
 
 /* Mostra a informação adicional no hover (PC) */
 .card-comparativo:hover .info-adicional {
-    max-height: 200px; /* Altura máxima para revelar o conteúdo, ajuste se o texto for maior */
+    height: auto;
+    max-height: 200px;
     opacity: 1;
+    visibility: visible;
 }
 
 /* Para dispositivos móveis: Exibe no clique (usando uma classe ativada por JS) */
 .card-comparativo.is-active .info-adicional {
-    max-height: 200px; /* Altura máxima para revelar o conteúdo */
+    height: auto;
+    max-height: 200px;
     opacity: 1;
+    visibility: visible;
 }
 
 .argumento-grid {
@@ -213,16 +220,16 @@ html {
     position: relative;
 }
 
-/* Seta de indicação de scroll (sutil) - Ajustada a cor para ser mais visível, talvez? */
+/* Seta de indicação de scroll (sutil) */
 .scroll-indicator-arrow {
     position: fixed;
-    right: 10px; /* Ajustei para ficar um pouco mais visível na borda */
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 2.5rem;
-    color: rgba(255, 255, 255, 0.4); /* Aumentei a opacidade para 40% */
+    color: rgba(255, 255, 255, 0.4);
     pointer-events: none;
-    transition: opacity 0.5s ease-out;
+    transition: opacity 0.3s ease-out; /* Transição mais rápida para a seta */
     opacity: 0;
     z-index: 100;
 }
