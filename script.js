@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     scrollIndicatorArrow.classList.remove('is-visible');
                 }
-            }, 100); // Debounce de 100ms
+            }, 100); // Debounce de 100ms: espera 100ms para ver se o scroll parou
         };
 
         tabelaScrollWrapper.addEventListener('scroll', checkScrollPosition);
