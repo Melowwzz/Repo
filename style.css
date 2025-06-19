@@ -304,6 +304,47 @@ html {
     margin: 0 auto;
 }
 
+/* Novo: Estilos para a seção de Ganhos e Dívidas */
+.info-block {
+    background-color: #1e293b;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #334155;
+}
+
+.info-block h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #a78bfa;
+    margin-bottom: 1rem;
+}
+
+.info-block p {
+    line-height: 1.7;
+    color: #cbd5e1;
+    text-align: left; /* Alinha o texto à esquerda dentro do bloco */
+}
+
+.info-block ul {
+    list-style: disc; /* Bolinhas para a lista */
+    margin-left: 1.5rem; /* Indentação da lista */
+    color: #cbd5e1;
+    margin-top: 1rem;
+}
+
+.info-block ul li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.info-block .source-info {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-top: 1.5rem;
+    text-align: right; /* Alinha a fonte à direita */
+}
+
 .chart-bar-item {
     display: flex;
     align-items: center;
