@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -130,19 +132,56 @@
                 </div>
             </div>
         </section>
+        
+        <section id="evolucao-mercado" class="section-container">
+            <h2 class="section-title">Evolução do Mercado de Trabalho no Brasil</h2>
+            <div class="chart-container">
+                <canvas id="lineChart"></canvas>
+            </div>
+            <p class="disclaimer-chart">*Dados de média anual, IBGE (PNAD Contínua).</p>
+        </section>
 
         <section id="realidade-autonomos" class="section-container">
-            <h2 class="section-title">A Realidade do Mercado de Trabalho: CLT vs. PJ no Brasil</h2> <div class="chart-container">
+            <h2 class="section-title">A Realidade dos Autônomos: Mais do que Números</h2>
+            <div class="chart-container">
                 <div class="chart-bar-item">
-                    <div class="chart-label">Trabalhadores CLT</div> <div class="chart-bar bar-clt-desejo">
-                        <span class="bar-value">60%</span> </div>
+                    <div class="chart-label">Autônomos que desejam CLT</div>
+                    <div class="chart-bar bar-clt-desejo">
+                        <span class="bar-value">67,7%</span>
+                    </div>
                 </div>
                 <div class="chart-bar-item">
-                    <div class="chart-label">Trabalhadores PJ / Autônomos</div> <div class="chart-bar bar-pj-necessidade">
-                        <span class="bar-value">40%</span> </div>
+                    <div class="chart-label">Autônomos por necessidade</div>
+                    <div class="chart-bar bar-pj-necessidade">
+                        <span class="bar-value">45%</span>
+                    </div>
                 </div>
             </div>
-            <p class="disclaimer-chart">*Dados baseados em pesquisas do IBGE (PNAD Contínua), variando conforme a metodologia e período.</p> </section>
+            <p class="disclaimer-chart">*Dados baseados em pesquisa da FGV sobre autônomos.</p>
+        </section>
+
+        <section id="ganhos-dividas" class="section-container">
+            <h2 class="section-title">Ganhos e Dívidas: CLT vs. PJ</h2>
+            <div class="info-block">
+                <h3>Ganhos: A Média nem Sempre É o Potencial</h3>
+                <p>Enquanto o trabalho PJ/Autônomo oferece potencial de ganhos ilimitados para alguns nichos, o rendimento médio habitual do trabalhador CLT ainda se destaca.</p>
+                <ul>
+                    <li>**Rendimento médio CLT:** R$ 2.969 (2023)</li>
+                    <li>**Rendimento médio PJ/Autônomo:** R$ 2.378 (2023)</li>
+                </ul>
+                <p class="source-info">Fonte: IBGE, PNAD Contínua (2023).</p>
+            </div>
+            <div class="info-block mt-8">
+                <h3>Dívidas: A Vulnerabilidade do Autônomo</h3>
+                <p>Apesar da flexibilidade, trabalhadores por conta própria tendem a ser mais vulneráveis ao endividamento e a ter maior dificuldade de acesso ao crédito formal.</p>
+                <ul>
+                    <li>PJs e autônomos frequentemente recorrem a empréstimos mais caros para gerenciar o negócio ou a vida pessoal.</li>
+                    <li>A falta de estabilidade financeira e reserva de emergência torna a categoria mais suscetível a apertos financeiros em momentos de crise.</li>
+                </ul>
+                <p class="source-info">Fonte: Análises de mercado e pesquisas sobre perfil do endividamento brasileiro.</p>
+            </div>
+        </section>
+
         <section id="batalha-numeros" class="section-container">
             <h2 class="section-title">A Batalha dos Números: CLT vs PJ</h2>
             <p class="text-center text-lg text-gray-400 max-w-3xl mx-auto -mt-8 mb-12">Uma comparação financeira para um salário bruto de R$ 5.000,00. Veja como os números se comportam em cada modelo.</p>
