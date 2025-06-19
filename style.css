@@ -295,16 +295,22 @@ html {
 .separador td { padding: 0.5rem; border-bottom: none; }
 .separador-final { border-top: 2px solid #4b5563; }
 
-/* --- ESTILOS DO NOVO GRÁFICO --- */
+/* --- ESTILOS DOS GRÁFICOS (Gráfico de Linha e Gráfico de Barras) --- */
 .chart-container {
     background-color: #1e293b;
     padding: 2.5rem;
     border-radius: 1.5rem;
     max-width: 800px;
     margin: 0 auto;
-    /* Aumentando a altura do container do gráfico */
-    height: 400px; /* Valor ajustado para dar mais espaço, pode aumentar se quiser */
+    /* A altura do container de cada gráfico será gerenciada individualmente ou pelo canvas */
+    height: auto; 
 }
+
+/* Estilo específico para o canvas do gráfico de linha, se precisar de altura fixa */
+#lineChart {
+    min-height: 350px; /* Altura mínima para o gráfico de linha, ajuste conforme necessário */
+}
+
 
 /* Novo: Estilos para a seção de Ganhos e Dívidas */
 .info-block {
@@ -347,6 +353,7 @@ html {
     text-align: right; /* Alinha a fonte à direita */
 }
 
+/* Estilos para as barras do gráfico "A Realidade dos Autônomos" */
 .chart-bar-item {
     display: flex;
     align-items: center;
@@ -375,6 +382,7 @@ html {
     overflow: hidden;
     box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
     transition: width 0.8s ease-out;
+    flex-grow: 1; /* Permite que a barra ocupe o espaço restante */
 }
 
 .bar-clt-desejo {
@@ -427,7 +435,7 @@ html {
         text-shadow: none;
     }
 }
-/* FIM DOS ESTILOS DO NOVO GRÁFICO */
+/* FIM DOS ESTILOS DOS GRÁFICOS */
 
 /* --- Calculadora --- */
 .calculadora-container {
@@ -448,8 +456,7 @@ html {
     color: #cbd5e1;
 }
 #salario-bruto {
-    width: calc(100% - 2rem);
-    max-width: 300px;
+    width: 100%;
     font-size: 1.5rem;
     padding: 1rem;
     border-radius: 0.75rem;
