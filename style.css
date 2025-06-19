@@ -302,6 +302,8 @@ html {
     border-radius: 1.5rem;
     max-width: 800px;
     margin: 0 auto;
+    /* Aumentando a altura do container do gráfico */
+    height: 400px; /* Valor ajustado para dar mais espaço, pode aumentar se quiser */
 }
 
 /* Novo: Estilos para a seção de Ganhos e Dívidas */
