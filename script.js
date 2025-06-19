@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         checkScrollPosition(); // Chama uma vez para o estado inicial
     }
 
-    // --- LÓGICA DO NOVO GRÁFICO DE LINHA (EVOLUÇÃO DO MERCADO) ---
+    // --- LÓGICA DO GRÁFICO DE LINHA (EVOLUÇÃO DO MERCADO) ---
     const ctx = document.getElementById('lineChart');
     if (ctx) {
         console.log('Inicializando Chart.js para o gráfico de linha...');
@@ -135,30 +135,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 scales: {
                     x: {
                         grid: {
-                            color: 'rgba(51, 65, 85, 0.5)', // Cor da grade X
+                            color: 'rgba(51, 65, 85, 0.5)', 
                             drawBorder: false
                         },
                         ticks: {
-                            color: '#cbd5e1' // Cor dos rótulos X
+                            color: '#cbd5e1' 
                         }
                     },
                     y: {
-                        beginAtZero: false, // Define o início do eixo Y para não começar do zero
-                        min: 20, // Começa o eixo Y em 20 milhões
-                        max: 40, // Termina o eixo Y em 40 milhões
+                        beginAtZero: false, 
+                        min: 20, 
+                        max: 40, 
                         grid: {
-                            color: 'rgba(51, 65, 85, 0.5)', // Cor da grade Y
+                            color: 'rgba(51, 65, 85, 0.5)', 
                             drawBorder: false
                         },
                         ticks: {
-                            color: '#cbd5e1' // Cor dos rótulos Y
+                            color: '#cbd5e1' 
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            color: '#cbd5e1' // Cor do texto da legenda
+                            color: '#cbd5e1' 
                         }
                     }
                 }
