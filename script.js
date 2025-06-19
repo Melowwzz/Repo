@@ -97,17 +97,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- LÓGICA DO NOVO GRÁFICO DE LINHA (EVOLUÇÃO DO MERCADO) ---
     const ctx = document.getElementById('lineChart');
     if (ctx) {
+        console.log('Inicializando Chart.js para o gráfico de linha...');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                labels: ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'], // Rótulos de anos estendidos
                 datasets: [
                     {
                         label: 'Trabalhadores CLT (Milhões)',
-                        data: [34.0, 34.2, 33.2, 33.0, 29.8, 30.5, 36.0, 37.7],
+                        data: [34.2, 35.4, 36.5, 35.8, 34.0, 34.2, 33.2, 33.0, 29.8, 30.5, 36.0, 37.7], // Dados CLT estendidos
                         borderColor: '#22d3ee', // Cor ciano
                         backgroundColor: 'rgba(34, 211, 238, 0.2)', // Cor ciano com transparência
-                        tension: 0.3, // Curva da linha
+                        tension: 0.2, // Tensão para suavizar a linha
                         fill: false, // Não preenche a área abaixo da linha
                         pointBackgroundColor: '#22d3ee',
                         pointBorderColor: '#0c111d',
@@ -116,10 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     {
                         label: 'Trabalhadores PJ / Autônomos (Milhões)',
-                        data: [22.9, 23.2, 23.7, 24.1, 24.9, 25.6, 25.5, 25.6],
+                        data: [20.4, 20.7, 21.2, 22.2, 22.9, 23.2, 23.7, 24.1, 24.9, 25.6, 25.5, 25.6], // Dados PJ/Autônomos estendidos
                         borderColor: '#a78bfa', // Cor roxa
                         backgroundColor: 'rgba(167, 139, 250, 0.2)', // Cor roxa com transparência
-                        tension: 0.3, // Curva da linha
+                        tension: 0.2, // Tensão para suavizar a linha
                         fill: false, // Não preenche a área abaixo da linha
                         pointBackgroundColor: '#a78bfa',
                         pointBorderColor: '#0c111d',
@@ -142,7 +143,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     },
                     y: {
-                        beginAtZero: true,
+                        beginAtZero: false, // Define o início do eixo Y para não começar do zero
+                        min: 20, // Começa o eixo Y em 20 milhões
+                        max: 40, // Termina o eixo Y em 40 milhões
                         grid: {
                             color: 'rgba(51, 65, 85, 0.5)', // Cor da grade Y
                             drawBorder: false
