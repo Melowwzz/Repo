@@ -94,6 +94,74 @@ document.addEventListener('DOMContentLoaded', () => {
         checkScrollPosition(); // Chama uma vez para o estado inicial
     }
 
+    // --- LÓGICA DO NOVO GRÁFICO DE LINHA (EVOLUÇÃO DO MERCADO) ---
+    const ctx = document.getElementById('lineChart');
+    if (ctx) {
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                datasets: [
+                    {
+                        label: 'Trabalhadores CLT (Milhões)',
+                        data: [34.0, 34.2, 33.2, 33.0, 29.8, 30.5, 36.0, 37.7],
+                        borderColor: '#22d3ee', // Cor ciano
+                        backgroundColor: 'rgba(34, 211, 238, 0.2)', // Cor ciano com transparência
+                        tension: 0.3, // Curva da linha
+                        fill: false, // Não preenche a área abaixo da linha
+                        pointBackgroundColor: '#22d3ee',
+                        pointBorderColor: '#0c111d',
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    },
+                    {
+                        label: 'Trabalhadores PJ / Autônomos (Milhões)',
+                        data: [22.9, 23.2, 23.7, 24.1, 24.9, 25.6, 25.5, 25.6],
+                        borderColor: '#a78bfa', // Cor roxa
+                        backgroundColor: 'rgba(167, 139, 250, 0.2)', // Cor roxa com transparência
+                        tension: 0.3, // Curva da linha
+                        fill: false, // Não preenche a área abaixo da linha
+                        pointBackgroundColor: '#a78bfa',
+                        pointBorderColor: '#0c111d',
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(51, 65, 85, 0.5)', // Cor da grade X
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#cbd5e1' // Cor dos rótulos X
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(51, 65, 85, 0.5)', // Cor da grade Y
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#cbd5e1' // Cor dos rótulos Y
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#cbd5e1' // Cor do texto da legenda
+                        }
+                    }
+                }
+            }
+        });
+    }
 
     // --- LÓGICA DA CALCULADORA ---
     const salarioInput = document.getElementById('salario-bruto');
